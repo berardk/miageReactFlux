@@ -2,10 +2,10 @@ import { EventEmitter } from "events";
 
 import dispatcher from "../dispatcher";
 
-class TodoStore extends EventEmitter {
+class PostStore extends EventEmitter {
   constructor() {
     super()
-    this.todos = [
+    this.posts = [
       {
         id: 113464613,
         text: "Go Shopping",
@@ -19,10 +19,10 @@ class TodoStore extends EventEmitter {
     ];
   }
 
-  createTodo(text) {
+  createPost(text) {
     const id = Date.now();
 
-    this.todos.push({
+    this.posts.push({
       id,
       text,
       complete: false,
@@ -32,17 +32,17 @@ class TodoStore extends EventEmitter {
   }
 
   getAll() {
-    return this.todos;
+    return this.posts;
   }
 
   handleActions(action) {
     switch(action.type) {
-      case "CREATE_TODO": {
-        this.createTodo(action.text);
+      case "CREATE_POST": {
+        this.createPost(action.text);
         break;
       }
-      case "RECEIVE_TODOS": {
-        this.todos = action.todos;
+      case "RECEIVE_POSTS": {
+        this.posts = action.posts;
         this.emit("change");
         break;
       }
@@ -51,7 +51,7 @@ class TodoStore extends EventEmitter {
 
 }
 
-const todoStore = new TodoStore;
-dispatcher.register(todoStore.handleActions.bind(todoStore));
+const postStore = new PostStore;
+dispatcher.register(postStore.handleActions.bind(postStore));
 
-export default todoStore;
+export default postStore;
