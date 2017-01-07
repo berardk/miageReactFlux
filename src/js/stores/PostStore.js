@@ -8,24 +8,22 @@ class PostStore extends EventEmitter {
     this.posts = [
       {
         id: 113464613,
-        text: "Go Shopping",
-        complete: false
+        text: "Ceci est le message du premier post"
       },
       {
         id: 235684679,
-        text: "Pay Water Bill",
-        complete: false
+        text: "Ceci est le message du deuxième post"
       },
     ];
   }
 
-  createPost(text) {
+  createPost(author, text) {
     const id = Date.now();
 
     this.posts.push({
       id,
+      author,
       text,
-      complete: false,
     });
 
     this.emit("change");
@@ -38,7 +36,7 @@ class PostStore extends EventEmitter {
   handleActions(action) {
     switch(action.type) {
       case "CREATE_POST": {
-        this.createPost(action.text);
+        this.createPost(action.author, action.text);
         break;
       }
       case "RECEIVE_POSTS": {

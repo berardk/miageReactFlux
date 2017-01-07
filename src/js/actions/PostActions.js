@@ -1,8 +1,9 @@
 import dispatcher from "../dispatcher";
 
-export function createPost(text) {
+export function createPost(author, text) {
   dispatcher.dispatch({
     type: "CREATE_POST",
+    author,
     text,
   });
 }
@@ -15,9 +16,6 @@ export function deletePost(id) {
 }
 
 export function reloadPosts() {
-  // axios("http://someurl.com/somedataendpoint").then((data) => {
-  //   console.log("got the data!", data);
-  // })
   dispatcher.dispatch({type: "FETCH_POSTS"});
   setTimeout(() => {
     dispatcher.dispatch({type: "RECEIVE_POSTS", posts: [
