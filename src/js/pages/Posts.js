@@ -36,7 +36,7 @@ export default class Featured extends React.Component {
 	  var message = document.getElementById("message").value;
 	  var auteur = document.getElementById("auteur").value;
 	  if(message != "" && auteur != ""){
-		  PostActions.createPost(auteur,message);
+		  PostActions.createPost(auteur,nl2br(message));
 		  document.getElementById("message").value = "";
 	  }
   }
@@ -50,10 +50,11 @@ export default class Featured extends React.Component {
 
     return (
       <div>
-        <button onClick={this.reloadPosts.bind(this)}>Reload!</button>
-        <ul>{PostComponents}</ul>
-        <input id="auteur" type="text"/>
-        <input id="message" type="text"/>
+        <div class="panel panel-default essai">
+        	{PostComponents}
+        </div>
+        <input id="auteur" type="text" class="form-control" placeholder="Auteur"/>
+        <textarea id="message" type="text" class="form-control" placeholder="Entrez votre message ici"/>
         <button onClick={this.createPost.bind(this)}>Ajouter!</button>
       </div>
     );

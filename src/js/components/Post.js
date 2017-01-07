@@ -9,8 +9,9 @@ export default class Post extends React.Component {
     const { author,text } = this.props;
 
     return (
-      <div>
-        <p>{author}<br/>{text}</p>
+      <div class ="panel-body post-content">
+        <p class="author">{author}</p>
+        <p class="post-content-text">{text}</p>
       </div>
     );
   }
