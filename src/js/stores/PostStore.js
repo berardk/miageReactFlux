@@ -8,10 +8,12 @@ class PostStore extends EventEmitter {
     this.posts = [
       {
         id: 113464613,
+        author: "Vin Diesel",
         text: "Ceci est le message du premier post"
       },
       {
         id: 235684679,
+        author: "Chuck Norris",
         text: "Ceci est le message du deuxième post"
       },
     ];

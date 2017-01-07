@@ -31,6 +31,15 @@ export default class Featured extends React.Component {
   reloadPosts() {
     PostActions.reloadPosts();
   }
+  
+  createPost() {
+	  var message = document.getElementById("message").value;
+	  var auteur = document.getElementById("auteur").value;
+	  if(message != "" && auteur != ""){
+		  PostActions.createPost(auteur,message);
+		  document.getElementById("message").value = "";
+	  }
+  }
 
   render() {
     const { posts } = this.state;
@@ -42,8 +51,10 @@ export default class Featured extends React.Component {
     return (
       <div>
         <button onClick={this.reloadPosts.bind(this)}>Reload!</button>
-        <h1>Posts</h1>
         <ul>{PostComponents}</ul>
+        <input id="auteur" type="text"/>
+        <input id="message" type="text"/>
+        <button onClick={this.createPost.bind(this)}>Ajouter!</button>
       </div>
     );
   }
