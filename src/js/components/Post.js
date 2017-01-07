@@ -6,11 +6,11 @@ export default class Post extends React.Component {
   }
 
   render() {
-    const { text } = this.props;
+    const { author,text } = this.props;
 
     return (
       <div>
-        <span>{text}</span>
+        <p>{author}<br/>{text}</p>
       </div>
     );
   }
