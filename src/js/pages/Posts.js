@@ -40,7 +40,7 @@ export default class Featured extends React.Component {
     });
 
     return (
-      <div>
+      <div>Test Commit CARL
         <button onClick={this.reloadPosts.bind(this)}>Reload!</button>
         <h1>Posts</h1>
         <ul>{PostComponents}</ul>
