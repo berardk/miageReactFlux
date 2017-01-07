@@ -49,7 +49,7 @@ export default class Featured extends React.Component {
     });
 
     return (
-      <div>
+      <div>Test Commit CARL
         <button onClick={this.reloadPosts.bind(this)}>Reload!</button>
         <ul>{PostComponents}</ul>
         <input id="auteur" type="text"/>
