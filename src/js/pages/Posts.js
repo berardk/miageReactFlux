@@ -36,11 +36,11 @@ export default class Featured extends React.Component {
 	  var message = document.getElementById("message").value;
 	  var auteur = document.getElementById("auteur").value;
 	  if(message != "" && auteur != ""){
-		  PostActions.createPost(auteur,nl2br(message));
+		  PostActions.createPost(auteur,message);
 		  document.getElementById("message").value = "";
 	  }
   }
-
+  
   render() {
     const { posts } = this.state;
 
