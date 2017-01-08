@@ -12,6 +12,7 @@ export default class Post extends React.Component {
       <div class ="panel-body post-content">
         <p class="author">{author}</p>
         <p class="post-content-text">{text}</p>
+        <button class="btn btn-default btn-commenter">Commenter</button>
       </div>
     );
   }
