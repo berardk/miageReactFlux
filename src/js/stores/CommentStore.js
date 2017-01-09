@@ -37,14 +37,7 @@ class CommentStore extends EventEmitter {
   }
   
   getById(id) {
-	  console.log("getById:" + this.comments);
-	  if (this.comments != []) {
-		  console.log("if");
-		  return this.comments.filter(i => i.idPost == id);
-	  } else {
-		  console.log("if");
-		  return this.comments;
-	  }
+	  return this.comments.filter(i => i.idPost == id);
   }
 
   handleActions(action) {

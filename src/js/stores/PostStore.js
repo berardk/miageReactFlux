@@ -29,7 +29,7 @@ class PostStore extends EventEmitter {
 
   createPost(author, text) {
     const id = Date.now();
-
+    const comments = [];
     this.posts.push({
       id,
       author,
