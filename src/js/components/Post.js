@@ -13,7 +13,7 @@ export default class Post extends React.Component {
   render() {
     const { author,text } = this.props;
     const { comments } = this.state;
-    
+ 
     const CommentComponents = comments.map((comment) => {
         return <Comment key={comment.id} {...comment}/>;
     });

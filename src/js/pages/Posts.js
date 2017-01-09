@@ -56,7 +56,6 @@ export default class Featured extends React.Component {
       <div>
         <div class="panel panel-default panel-posts">
         	{PostComponents}
-        	{CommentComponents}
         </div>
         <input id="auteur" type="text" class="form-control" placeholder="Auteur"/>
         <textarea id="message" type="text" class="form-control" placeholder="Entrez votre message ici"/>
