@@ -16,7 +16,7 @@ class PostStore extends EventEmitter {
         id: 222222222,
     	idPost: 235684679,
         author: "Chuck Norris",
-        text: "Ceci est le message du deuxième post"
+        text: "Commentaire du deuxième post"
       },
     ];
   }

@@ -50,12 +50,12 @@ export default class Featured extends React.Component {
 
     return (
       <div>
-        <div class="panel panel-default essai">
+        <div class="panel panel-default panel-posts">
         	{PostComponents}
         </div>
         <input id="auteur" type="text" class="form-control" placeholder="Auteur"/>
         <textarea id="message" type="text" class="form-control" placeholder="Entrez votre message ici"/>
-        <button onClick={this.createPost.bind(this)}>Ajouter!</button>
+        <button class="btn btn-default" onClick={this.createPost.bind(this)}>Poster</button>
       </div>
     );
   }
