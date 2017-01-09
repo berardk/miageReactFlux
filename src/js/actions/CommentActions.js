@@ -2,13 +2,14 @@ import dispatcher from "../dispatcher";
 
 export function addComment(idPost, author, text) {
   dispatcher.dispatch({
-    type: "ADD_COMMENT",
+    type: "CREATE_COMMENT",
+    idPost,
     author,
     text,
   });
 }
 
-export function deletePost(id) {
+export function deleteComment(id) {
   dispatcher.dispatch({
     type: "DELETE_COMMENT",
     id,

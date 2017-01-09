@@ -22,8 +22,9 @@ class CommentStore extends EventEmitter {
   }
 
   addComment(idPost, author, text) {
-
+	const id = Date.now();
     this.comments.push({
+      id,
       idPost,
       author,
       text,
@@ -42,7 +43,7 @@ class CommentStore extends EventEmitter {
 
   handleActions(action) {
     switch(action.type) {
-      case "ADD_COMMENT": {
+      case "CREATE_COMMENT": {
         this.addComment(action.idPost, action.author, action.text);
         break;
       }

@@ -9,10 +9,7 @@ export default class Comment extends React.Component {
     const { idPost, author, text } = this.props;
 
     return (
-      <div class ="panel-body post-comment">
-        <p class="comment-author">{author}</p>
-        <p class="post-comment-text">{text}</p>
-      </div>
+      <p><span class="comment-author" >{author}</span> : <span class="post-comment-text">{text}</span></p>
     );
   }
 }

@@ -13,7 +13,6 @@ export default class Featured extends React.Component {
     super();
     this.getPosts = this.getPosts.bind(this);
     this.state = {
-    		comments: CommentStore.getAll(),
     		posts: PostStore.getAll(),
     };
   }
@@ -42,15 +41,13 @@ export default class Featured extends React.Component {
   }
   
   render() {
-    const { comments,posts } = this.state;
+    const { posts } = this.state;
 
     const PostComponents = posts.map((post) => {
         return <Post key={post.id} {...post}/>;
     });
     
-    const CommentComponents = comments.map((comment) => {
-        return <Comment key={comment.id} {...comment}/>;
-    });
+
 
     return (
       <div>
