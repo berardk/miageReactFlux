@@ -30,7 +30,16 @@ class PostStore extends EventEmitter {
 
     this.emit("change");
   }
-
+    
+editPost(id,text){
+    var post;
+    for(var i=0;i<this.posts.length;i++){
+        if(this.posts[i].id==id){
+            this.posts[i].text=text;
+            this.emit("change");
+        }
+    }
+}
   getAll() {
     return this.posts;
   }
@@ -41,6 +50,10 @@ class PostStore extends EventEmitter {
         this.createPost(action.author, action.text);
         break;
       }
+        case "EDIT_POST" :{
+            this.editPost(action.id,action.text);
+            break;
+        }
       case "RECEIVE_POSTS": {
         this.posts = action.posts;
         this.emit("change");
