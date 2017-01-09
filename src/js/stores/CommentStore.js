@@ -2,7 +2,7 @@ import { EventEmitter } from "events";
 
 import dispatcher from "../dispatcher";
 
-class PostStore extends EventEmitter {
+class CommentStore extends EventEmitter {
   constructor() {
     super()
     this.comments = [
@@ -34,6 +34,10 @@ class PostStore extends EventEmitter {
 
   getAll() {
     return this.comments;
+  }
+  
+  getById(id) {
+	  return this.comments.filter(i => i.idPost == id);
   }
 
   handleActions(action) {
