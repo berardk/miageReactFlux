@@ -1,10 +1,12 @@
 import dispatcher from "../dispatcher";
 
-export function createPost(author, text) {
+export function createPost(author, text, image, nblike) {
   dispatcher.dispatch({
     type: "CREATE_POST",
     author,
     text,
+	image,
+	nblike
   });
 }
 
@@ -19,6 +21,15 @@ export function editPost(id, text) {
 export function deletePost(id) {
   dispatcher.dispatch({
     type: "DELETE_POST",
+    id,
+  });
+}
+
+export function addLike(id,nblike) {
+  nblike = nblike+1;
+  dispatcher.dispatch({
+    type: "LIKE_POST",
+	nblike,
     id,
   });
 }

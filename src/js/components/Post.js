@@ -23,20 +23,37 @@ export default class Post extends React.Component {
 
         
     }
+	
+	addLike(id,nblike) {
+	  PostActions.addLike(id,nblike);
+  }
+  
+  deletePost(id) {
+	  PostActions.deletePost(id);
+  }
     
   render() {
-    const { author,text } = this.props;
-if(this.state.onEdition){return(
-    <div>        <p class="author">{author}</p>
-        <textarea id="message" type="text" class="form-control" placeholder="Entrez votre message ici">{text}</textarea>
-        <button onClick={this.submitEditedPost.bind(this)}>Modifier!</button></div>
-);
+    const { id,author,text,image,nblike } = this.props;
+	
+	var img = "";
+	if(image) {
+		img = 'img/'+image;
+	}
+	
+	if(this.state.onEdition){return(
+		<div>        <p class="author">{author}</p>
+			<textarea id="message" type="text" class="form-control" placeholder="Entrez votre message ici">{text}</textarea>
+			<button onClick={this.submitEditedPost.bind(this)}>Modifier!</button></div>
+	);
     }else{
     return (
       <div class ="panel-body post-content">
         <button class="pull-right" onClick={this.editPost.bind(this)}><span class="glyphicon glyphicon-pencil"></span></button>
+		<button class="pull-right btn btn-danger btn-xs" onClick={this.deletePost.bind(this,id)}> X </button>
         <p class="author">{author}</p>
         <p class="post-content-text">{text}</p>
+		<img src={img} />
+		<button className="submitButton" type="submit" class="btn btn-success btn-xs" onClick={this.addLike.bind(this,id,nblike)}>LIKE</button> {nblike} like
       </div>
     );
     }
