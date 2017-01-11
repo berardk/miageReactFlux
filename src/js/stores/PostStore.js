@@ -1,6 +1,7 @@
 import { EventEmitter } from "events";
 
 import dispatcher from "../dispatcher";
+import createFragment from 'react-addons-create-fragment';
 
 class PostStore extends EventEmitter {
   constructor() {
@@ -9,7 +10,14 @@ class PostStore extends EventEmitter {
       {
         id: 113464613,
         author: "Vin Diesel",
-        text: "Ceci est le message du premier post"
+        text: "Ceci est le message du premier post",
+        comments: createFragment(
+        		{
+        			id: 111111111,
+            		idPost: 113464613,
+            		author: "Eminem2",
+            		text: "Commentaire 2 du premier post"
+        		}),
       },
       {
         id: 235684679,
@@ -21,11 +29,12 @@ class PostStore extends EventEmitter {
 
   createPost(author, text) {
     const id = Date.now();
-
+    const comments = [];
     this.posts.push({
       id,
       author,
       text,
+      comments,
     });
 
     this.emit("change");

@@ -2,3 +2,8 @@ body{background-color:#e9ebee;}
 .author{font-weight:bold;}
 .post-content-text{margin-left:15px;}
 .post-content{border-bottom: 2px solid #e9ebee;}
+.btn-commenter{float:right;width:10%}
+.panel-posts{max-height:500px; overflow-y:scroll;}
+.input-comment{float:left;width:90%;}
+.comment-author,.post-comment-text{color:#8b8b8b;}
+.comment-author{font-weight:bold;}

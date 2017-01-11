@@ -22,21 +22,3 @@ export function deletePost(id) {
     id,
   });
 }
-
-export function reloadPosts() {
-  dispatcher.dispatch({type: "FETCH_POSTS"});
-  setTimeout(() => {
-    dispatcher.dispatch({type: "RECEIVE_POSTS", posts: [
-      {
-        id: 8484848484,
-        text: "Go Shopping Again",
-        complete: false
-      },
-      {
-        id: 6262627272,
-        text: "Hug Wife",
-        complete: true
-      },
-    ]});
-  }, 1000);
-}
