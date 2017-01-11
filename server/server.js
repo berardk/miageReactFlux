@@ -47,6 +47,20 @@ console.log(typePost);
            text,
            });
    }
+   else if(typePost=="addlike")
+      {
+      console.log("Je suis un Like");
+        var id = req.body.id;
+
+        var i = 0;
+        for(i = 0;i<obj.posts.length;i++)
+        {
+            if(obj.posts[i].id==id)
+            {
+            obj.posts[i].nblike++;
+            }
+        }
+      }
 	jsonfile.writeFile(file, obj, function (err) {
 	    console.error(err)
 	    })
