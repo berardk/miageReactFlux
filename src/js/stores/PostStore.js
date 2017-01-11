@@ -37,6 +37,7 @@ class PostStore extends EventEmitter {
   createPost(author, text, image, nblike) {
     const id = Date.now();
     const comments = [];
+    nblike = 0;
 
     this.posts.unshift({
       id,
@@ -71,6 +72,14 @@ class PostStore extends EventEmitter {
   addLike(id,nblike) {
 	
 	var post = this.getOnePost(id,nblike);
+
+    var data ="TypePost=addlike&id=" + id;
+
+    var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+    xmlhttp.open("POST", "http://localhost:3001");
+    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlhttp.send(data);
+
 
     this.emit("change");
   }

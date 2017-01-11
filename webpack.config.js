@@ -8,14 +8,12 @@ module.exports = {
   entry: "./js/client.js",
   module: {
     loaders: [
-      {
+    {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['react', 'es2015', 'stage-0'],
-          plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy'],
-        }
+        loaders: ['react-hot', 'jsx?harmony', 'babel-loader?presets[]=es2015,presets[]=stage-0,presets[]=react,plugins[]=react-html-attrs,plugins[]=transform-class-properties,plugins[]=transform-decorators-legacy'],
+        include: path.join(__dirname, 'src'),
+
       }
     ]
   },
@@ -25,6 +23,7 @@ module.exports = {
   },
   plugins: debug ? [] : [
     new webpack.optimize.DedupePlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
   ],
