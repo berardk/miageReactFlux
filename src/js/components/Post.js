@@ -81,13 +81,13 @@ refreshComment() {
 		<button class="pull-right btn btn-danger btn-xs" onClick={this.deletePost.bind(this,id)}> X </button>
         <p class="author">{author}</p>
         <p class="post-content-text">{text}</p>
+        <img src={img} />
         <hr/>
         <div class ="panel-body post-comment">{CommentComponents}</div>
         <div>
         	<input id={'comment_' + id} type="text" class="form-control input-comment" placeholder="Entrez un commentaire ici..."/>
         	<button onClick={this.addComment.bind(this)} class="btn btn-default btn-commenter">Commenter</button>
         </div>
-		<img src={img} />
 		<button className="submitButton" type="submit" class="btn btn-success btn-xs" onClick={this.addLike.bind(this,id,nblike)}>LIKE</button> {nblike} like
       </div>
     );

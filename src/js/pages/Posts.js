@@ -31,7 +31,6 @@ export default class Featured extends React.Component {
    
   _handleSubmit(e) {
     e.preventDefault();
-    console.log('handle uploading-', this.state.file);
   }
 	
   _handleImageChange(e) {
@@ -84,14 +83,16 @@ export default class Featured extends React.Component {
         </div>
         <input id="auteur" type="text" class="form-control" placeholder="Auteur"/>
         <textarea id="message" type="text" class="form-control" placeholder="Entrez votre message ici"/>
-		<div className="previewComponent">
+        <button class="btn btn-default btn-poster" onClick={this.createPost.bind(this)}>Poster</button>
+        <div class="block-image">
 			<form onSubmit={(e)=>this._handleSubmit(e)}>
-			  <input className="fileInput" id="buttonInputFile" type="file" onChange={(e)=>this._handleImageChange(e)} />
-			  <button className="submitButton" type="submit" onClick={(e)=>this._handleSubmit(e)}>Joindre l'image</button>
+			<label class="btn btn-default btn-primary">
+				Parcourir...
+			  <input className="fileInput" id="buttonInputFile" type="file" onChange={(e)=>this._handleImageChange(e)} /></label>
+			  <button className="btn btn-default btn-primary submitButton" type="submit" onClick={(e)=>this._handleSubmit(e)}>Joindre l'image</button>
 			</form>
 		</div>
 		<br />
-        <button class="btn btn-default" onClick={this.createPost.bind(this)}>Poster</button>
       </div>
     );
   }
