@@ -1,4 +1,5 @@
 import { EventEmitter } from "events";
+var json = require("json-loader!./../../../server/SavePosts.json");
 
 import dispatcher from "../dispatcher";
 import createFragment from 'react-addons-create-fragment';
@@ -6,7 +7,7 @@ import createFragment from 'react-addons-create-fragment';
 class PostStore extends EventEmitter {
   constructor() {
     super()
-    this.posts = [
+    /*this.posts = [
       {
         id: 113464613,
         author: "Vin Diesel",
@@ -24,18 +25,28 @@ class PostStore extends EventEmitter {
         author: "Chuck Norris",
         text: "Ceci est le message du deuxième post"
       },
-    ];
+    ];*/
+
+    this.posts = json.posts;
   }
 
   createPost(author, text) {
     const id = Date.now();
     const comments = [];
+
     this.posts.push({
       id,
       author,
       text,
       comments,
     });
+
+    var data ="TypePost=addPost&id=" + id + "&author=" + author + "&text=" + text;
+
+    var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+    xmlhttp.open("POST", "http://localhost:3001");
+    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlhttp.send(data);
 
     this.emit("change");
   }

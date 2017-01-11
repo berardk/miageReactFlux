@@ -1,0 +1,19 @@
+{
+  "name": "react-auth-server",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Auth0",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "express-jwt": "^3.4.0",
+    "jsonfile": "^2.4.0",
+    "lodash": "^4.12.0"
+  }
+}
