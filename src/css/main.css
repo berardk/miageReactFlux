@@ -7,3 +7,6 @@ body{background-color:#e9ebee;}
 .input-comment{float:left;width:90%;}
 .comment-author,.post-comment-text{color:#8b8b8b;}
 .comment-author{font-weight:bold;}
+.fileInput{visibility:hidden;height:0px;width:0px;}
+.btn-poster{float:left;width:120px;}
+.block-image{float:right;}
