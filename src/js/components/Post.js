@@ -9,9 +9,7 @@ export default class Post extends React.Component {
   }
     
     editPost(){
-        console.log(this.props);
         this.setState({onEdition:true});
-        console.log(this.state);
     }
     
     submitEditedPost(){
@@ -26,9 +24,9 @@ export default class Post extends React.Component {
     
   render() {
     const { author,text } = this.props;
-if(this.state.onEdition){return(
+    if(this.state.onEdition){return(
     <div>        <p class="author">{author}</p>
-        <textarea id="message" type="text" class="form-control" placeholder="Entrez votre message ici">{text}</textarea>
+        <textarea id="message" type="text" class="form-control" placeholder="Entrez votre message ici" defaultValue={text}></textarea>
         <button onClick={this.submitEditedPost.bind(this)}>Modifier!</button></div>
 );
     }else{
