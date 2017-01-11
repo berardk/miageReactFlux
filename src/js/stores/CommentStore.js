@@ -1,11 +1,12 @@
 import { EventEmitter } from "events";
+var json = require("json-loader!./../../../server/SavePosts.json");
 
 import dispatcher from "../dispatcher";
 
 class CommentStore extends EventEmitter {
   constructor() {
     super()
-    this.comments = [
+    /*this.comments = [
       {
         id: 111111111,
         idPost: 113464613,
@@ -18,7 +19,9 @@ class CommentStore extends EventEmitter {
         author: "Chuck Norris",
         text: "Commentaire du deuxième post"
       },
-    ];
+    ];*/
+
+    this.comments = json.comments;
   }
 
   addComment(idPost, author, text) {
@@ -29,6 +32,13 @@ class CommentStore extends EventEmitter {
       author,
       text,
     });
+
+    var data = "TypePost=addComment&id=" + id + "&idPost="+ idPost +"&author=" + author + "&text=" + text;
+
+        var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+        xmlhttp.open("POST", "http://localhost:3001");
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlhttp.send(data);
 
     this.emit("change");
   }
