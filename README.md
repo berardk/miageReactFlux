@@ -1,10 +1,15 @@
 # miageReactFlux
 MIAGE project for React Flux
 
-# Démarrage
+# Dï¿½marrage
 Pour lancer le serveur, il faut avoir NPM :
-* Placez-vous dans le répertoire du projet
+* Placez-vous dans le rï¿½pertoire du projet
 * npm install
 * npm run dev
+
+Second serveur Ã  lancer pour faire marcher l'enregistrement :
+* Placez-vous dans le rï¿½pertoire du projet/server
+* npm install
+* node server.js
 
 L'application est ensuite accessible depuis localhost:8080
