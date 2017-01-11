@@ -18,16 +18,20 @@ class PostStore extends EventEmitter {
             		author: "Eminem2",
             		text: "Commentaire 2 du premier post"
         		}),
+		image: "",
+		nblike: 0
       },
       {
         id: 235684679,
         author: "Chuck Norris",
-        text: "Ceci est le message du deuxième post"
+        text: "Ceci est le message du deuxième post",
+		image: "",
+		nblike: 0
       },
     ];
   }
 
-  createPost(author, text) {
+  createPost(author, text, image, nblike) {
     const id = Date.now();
     const comments = [];
     this.posts.push({
@@ -35,19 +39,49 @@ class PostStore extends EventEmitter {
       author,
       text,
       comments,
+	  image,
+	  nblike
     });
 
     this.emit("change");
   }
+  
+  getOnePost(id,nblike) {
+      var elt_trouve = "";
+      this.posts.forEach(function(element) {
+		if(element.id == id) {
+			elt_trouve = element;
+			element.nblike = nblike;
+		}
+	  });
+	  return elt_trouve;
+  }
+  
+  addLike(id,nblike) {
+	
+	var post = this.getOnePost(id,nblike);
+
+    this.emit("change");
+  }
+  
+  deletePost(id) {
+    var supprListe = this.posts;
+	this.posts.forEach(function(element,i) {
+		if(element.id == id) {
+			delete supprListe[i];
+		}
+	});
+	this.posts = supprListe;
+	this.emit("change");
+  }
     
 editPost(id,text){
-    var post;
-    for(var i=0;i<this.posts.length;i++){
-        if(this.posts[i].id==id){
-            this.posts[i].text=text;
-            this.emit("change");
+    this.posts.forEach(function(element,i) {
+		if(element.id == id) {
+            element.text=text;
         }
-    }
+    });
+	this.emit("change");
 }
   getAll() {
     return this.posts;
@@ -56,7 +90,7 @@ editPost(id,text){
   handleActions(action) {
     switch(action.type) {
       case "CREATE_POST": {
-        this.createPost(action.author, action.text);
+        this.createPost(action.author, action.text, action.image, action.nblike);
         break;
       }
         case "EDIT_POST" :{
@@ -68,6 +102,14 @@ editPost(id,text){
         this.emit("change");
         break;
       }
+	  case "LIKE_POST": {
+        this.addLike(action.id,action.nblike);
+        break;
+      }
+	  case "DELETE_POST": {
+		this.deletePost(action.id);
+		break;
+	  }
     }
   }
 

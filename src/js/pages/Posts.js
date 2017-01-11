@@ -13,8 +13,12 @@ export default class Featured extends React.Component {
     super();
     this.getPosts = this.getPosts.bind(this);
     this.state = {
-    		posts: PostStore.getAll(),
+      posts: PostStore.getAll(),
+	  file: '',
+      imagePreviewUrl: ''
     };
+	this._handleImageChange = this._handleImageChange.bind(this);
+    this._handleSubmit = this._handleSubmit.bind(this);
   }
 
   componentWillMount() {
@@ -24,7 +28,28 @@ export default class Featured extends React.Component {
   componentWillUnmount() {
     PostStore.removeListener("change", this.getPosts);
   }
+   
+  _handleSubmit(e) {
+    e.preventDefault();
+    console.log('handle uploading-', this.state.file);
+  }
+	
+  _handleImageChange(e) {
+    e.preventDefault();
 
+    let reader = new FileReader();
+    let file = e.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        imagePreviewUrl: reader.result
+      });
+    }
+
+    reader.readAsDataURL(file)
+  }  
+  
   getPosts() {
     this.setState({
       posts: PostStore.getAll(),
@@ -32,12 +57,15 @@ export default class Featured extends React.Component {
   }
   
   createPost() {
+      var filename = this.state.file.name;
 	  var message = document.getElementById("message").value;
 	  var auteur = document.getElementById("auteur").value;
 	  if(message != "" && auteur != ""){
-		  PostActions.createPost(auteur,message);
+		  PostActions.createPost(auteur,message,filename,0);
 		  document.getElementById("message").value = "";
 	  }
+	  this.state.file = "";
+	  this.state.imagePreviewUrl = "Aucun fichier choisi";
   }
   
   render() {
@@ -56,6 +84,13 @@ export default class Featured extends React.Component {
         </div>
         <input id="auteur" type="text" class="form-control" placeholder="Auteur"/>
         <textarea id="message" type="text" class="form-control" placeholder="Entrez votre message ici"/>
+		<div className="previewComponent">
+			<form onSubmit={(e)=>this._handleSubmit(e)}>
+			  <input className="fileInput" id="buttonInputFile" type="file" onChange={(e)=>this._handleImageChange(e)} />
+			  <button className="submitButton" type="submit" onClick={(e)=>this._handleSubmit(e)}>Joindre l'image</button>
+			</form>
+		</div>
+		<br />
         <button class="btn btn-default" onClick={this.createPost.bind(this)}>Poster</button>
       </div>
     );
