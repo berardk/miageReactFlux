@@ -48,7 +48,7 @@ class PostStore extends EventEmitter {
 	  nblike
     });
 
-    var data ="TypePost=addPost&id=" + id + "&author=" + author + "&text=" + text +"&nblike=" + nblike;
+    var data ="TypePost=addPost&id=" + id + "&author=" + author + "&text=" + text;
 
     var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
     xmlhttp.open("POST", "http://localhost:3001");

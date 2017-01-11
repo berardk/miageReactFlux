@@ -26,10 +26,12 @@ console.log(typePost);
     var id = req.body.id;
     var author = req.body.author;
     var text = req.body.text;
+    var nblike = 0;
   obj.posts.push({
         id,
         author,
         text,
+        nblike
         });
 	}
    else if(typePost=="addComment")
