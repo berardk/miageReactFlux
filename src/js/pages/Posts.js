@@ -78,9 +78,6 @@ export default class Featured extends React.Component {
 
     return (
       <div>
-        <div class="panel panel-default panel-posts">
-        	{PostComponents}
-        </div>
         <input id="auteur" type="text" class="form-control" placeholder="Auteur"/>
         <textarea id="message" type="text" class="form-control" placeholder="Entrez votre message ici"/>
         <button class="btn btn-default btn-poster" onClick={this.createPost.bind(this)}>Poster</button>
@@ -92,7 +89,10 @@ export default class Featured extends React.Component {
 			  <button className="btn btn-default btn-primary submitButton" type="submit" onClick={(e)=>this._handleSubmit(e)}>Joindre l'image</button>
 			</form>
 		</div>
-		<br />
+		<br/>
+		<div class="panel panel-default panel-posts">
+    		{PostComponents}
+    	</div>
       </div>
     );
   }

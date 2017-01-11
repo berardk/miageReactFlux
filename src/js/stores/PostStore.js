@@ -38,7 +38,7 @@ class PostStore extends EventEmitter {
     const id = Date.now();
     const comments = [];
 
-    this.posts.push({
+    this.posts.unshift({
       id,
       author,
       text,

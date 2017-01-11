@@ -19,9 +19,13 @@ export default class Post extends React.Component {
     }
     
     submitEditedPost(){
-        var message = document.getElementById("message").value;
+    	console.log("fdp1");
+        var message = document.getElementById("edit_message").value;
+        console.log("fdp2:" + message);
         if(message){
+        	console.log("fdp3");
             PostActions.editPost(this.props.id,message);
+            console.log("fdp4");
         }
                 this.setState({onEdition:false});
     }
@@ -70,16 +74,16 @@ refreshComment() {
 	}
     if(this.state.onEdition){return(
     <div>        <p class="author">{author}</p>
-        <textarea id="message" type="text" class="form-control" placeholder="Entrez votre message ici" defaultValue={text}></textarea>
+        <textarea id="edit_message" type="text" class="form-control" placeholder="Entrez votre message ici" defaultValue={text}></textarea>
         <button onClick={this.submitEditedPost.bind(this)}>Modifier!</button></div>
 );
 
     }else{
     return (
       <div class ="panel-body post-content">
-        <button class="pull-right" onClick={this.editPost.bind(this)}><span class="glyphicon glyphicon-pencil"></span></button>
-		<button class="pull-right btn btn-danger btn-xs" onClick={this.deletePost.bind(this,id)}> X </button>
-        <p class="author">{author}</p>
+        <button class="pull-right" onClick={this.editPost.bind(this)}><span class="glyphicon glyphicon-edit"></span> Edit</button>
+		<button class="pull-right" onClick={this.deletePost.bind(this,id)}><span class="glyphicon glyphicon-trash"></span> Suppr</button>
+        <div class="author">{author}</div>
         <p class="post-content-text">{text}</p>
         <img src={img} />
         <hr/>
@@ -88,7 +92,7 @@ refreshComment() {
         	<input id={'comment_' + id} type="text" class="form-control input-comment" placeholder="Entrez un commentaire ici..."/>
         	<button onClick={this.addComment.bind(this)} class="btn btn-default btn-commenter">Commenter</button>
         </div>
-		<button className="submitButton" type="submit" class="btn btn-success btn-xs" onClick={this.addLike.bind(this,id,nblike)}>LIKE</button> {nblike} like
+		<button className="submitButton" type="submit" class="btn btn-default btn-sm" onClick={this.addLike.bind(this,id,nblike)}><span class="glyphicon glyphicon-thumbs-up"></span> Like</button> {nblike} like
       </div>
     );
     }
