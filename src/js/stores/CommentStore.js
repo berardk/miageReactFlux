@@ -21,7 +21,7 @@ class CommentStore extends EventEmitter {
       },
     ];*/
 
-    this.comments = json.comments;
+    this.comments = [];
   }
 
   addComment(idPost, author, text) {

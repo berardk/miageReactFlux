@@ -14,30 +14,23 @@ export default class Post extends React.Component {
     };
   }
     
-    editPost(){
-        this.setState({onEdition:true});
-    }
+  editPost(){
+	  this.setState({onEdition:true});
+  }
     
-    submitEditedPost(){
-    	console.log("fdp1");
-        var message = document.getElementById("edit_message").value;
-        console.log("fdp2:" + message);
-        if(message){
-        	console.log("fdp3");
-            PostActions.editPost(this.props.id,message);
-            console.log("fdp4");
-        }
-                this.setState({onEdition:false});
-    }
+  submitEditedPost(){
+	  var message = document.getElementById("edit_message").value;
+	  if(message){
+		  PostActions.editPost(this.props.id,message);
+      }
+      this.setState({onEdition:false});
+  }
     
   componentWillMount() {
 	    CommentStore.on("change", this.refreshComment);
-
-
-        
-    }
+  }
 	
-	addLike(id,nblike) {
+  addLike(id,nblike) {
 	  PostActions.addLike(id,nblike);
   }
   
@@ -45,18 +38,18 @@ export default class Post extends React.Component {
 	  PostActions.deletePost(id);
   }
     
-refreshComment() {
+  refreshComment() {
 	var idP = this.props.id;
 	this.setState({
 		comments: CommentStore.getById(idP),
 	});
-}
+  }
 
   addComment(){
 	  var idP = this.props.id;
 	  var comment = document.getElementById("comment_" + idP).value;
-	  var auteur = "Bob";
-	  if(comment != ""){
+	  var auteur = document.getElementById("auteur").value;
+	  if(comment != "" && auteur != ""){
 		  CommentActions.addComment(idP, auteur, comment);
 		  document.getElementById("comment_" + idP).value = "";
 	  }
@@ -72,28 +65,33 @@ refreshComment() {
 	if(image) {
 		img = 'img/'+image;
 	}
-    if(this.state.onEdition){return(
-    <div>        <p class="author">{author}</p>
-        <textarea id="edit_message" type="text" class="form-control" placeholder="Entrez votre message ici" defaultValue={text}></textarea>
-        <button onClick={this.submitEditedPost.bind(this)}>Modifier!</button></div>
-);
-
+    if(this.state.onEdition){
+    	return(
+    		<div>
+    			<p class="author">{author}</p>
+    			<textarea id="edit_message" type="text" class="form-control" placeholder="Entrez votre message ici" defaultValue={text}></textarea>
+    			<button onClick={this.submitEditedPost.bind(this)}>Modifier!</button>
+    		</div>
+    	);
     }else{
-    return (
-      <div class ="panel-body post-content">
-        <button class="pull-right" onClick={this.editPost.bind(this)}><span class="glyphicon glyphicon-edit"></span> Edit</button>
-		<button class="pull-right" onClick={this.deletePost.bind(this,id)}><span class="glyphicon glyphicon-trash"></span> Suppr</button>
-        <div class="author">{author}</div>
-        <p class="post-content-text">{text}</p>
-        <img src={img} />
-        <hr/>
-        <div class ="panel-body post-comment">{CommentComponents}</div>
-        <div>
-        	<input id={'comment_' + id} type="text" class="form-control input-comment" placeholder="Entrez un commentaire ici..."/>
-        	<button onClick={this.addComment.bind(this)} class="btn btn-default btn-commenter">Commenter</button>
-        </div>
-		<button className="submitButton" type="submit" class="btn btn-default btn-sm" onClick={this.addLike.bind(this,id,nblike)}><span class="glyphicon glyphicon-thumbs-up"></span> Like</button> {nblike} like
-      </div>
+    	return (
+    			<div class ="panel-body post-content">
+    				<button class="pull-right" onClick={this.editPost.bind(this)}><span class="glyphicon glyphicon-edit"></span> Edit</button>
+    				<button class="pull-right" onClick={this.deletePost.bind(this,id)}><span class="glyphicon glyphicon-trash"></span> Suppr</button>
+    				<p class="author">{author}</p>
+    				<p class="post-content-text">{text}</p>
+    				<img src={img} />
+    				<hr/>
+    				<div class ="panel-body post-comment">{CommentComponents}</div>
+    				<div>
+    					<input id={'comment_' + id} type="text" class="form-control input-comment" placeholder="Entrez un commentaire ici..."/>
+    					<button onClick={this.addComment.bind(this)} class="btn btn-default btn-commenter">Commenter</button>
+    				</div>
+    				<button className="submitButton" type="submit" class="btn btn-default btn-sm" onClick={this.addLike.bind(this,id,nblike)}>
+    					<span class="glyphicon glyphicon-thumbs-up"></span> Like
+    				</button>
+    				<span>{nblike} like</span>
+    			</div>
     );
     }
   }

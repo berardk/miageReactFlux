@@ -6,31 +6,7 @@ import createFragment from 'react-addons-create-fragment';
 
 class PostStore extends EventEmitter {
   constructor() {
-    super()
-    /*this.posts = [
-      {
-        id: 113464613,
-        author: "Vin Diesel",
-        text: "Ceci est le message du premier post",
-        comments: createFragment(
-        		{
-        			id: 111111111,
-            		idPost: 113464613,
-            		author: "Eminem2",
-            		text: "Commentaire 2 du premier post"
-        		}),
-		image: "",
-		nblike: 0
-      },
-      {
-        id: 235684679,
-        author: "Chuck Norris",
-        text: "Ceci est le message du deuxième post",
-		image: "",
-		nblike: 0
-      },
-    ];*/
-
+    super();
     this.posts = json.posts;
   }
 
