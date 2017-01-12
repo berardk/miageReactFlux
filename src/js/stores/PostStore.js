@@ -48,12 +48,12 @@ class PostStore extends EventEmitter {
 	  nblike
     });
 
-    var data ="TypePost=addPost&id=" + id + "&author=" + author + "&text=" + text;
+    /*var data ="TypePost=addPost&id=" + id + "&author=" + author + "&text=" + text;
 
     var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
     xmlhttp.open("POST", "http://localhost:3001");
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xmlhttp.send(data);
+    xmlhttp.send(data);*/
 
     this.emit("change");
   }
@@ -73,12 +73,12 @@ class PostStore extends EventEmitter {
 	
 	var post = this.getOnePost(id,nblike);
 
-    var data ="TypePost=addlike&id=" + id;
+    /*var data ="TypePost=addlike&id=" + id;
 
     var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
     xmlhttp.open("POST", "http://localhost:3001");
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xmlhttp.send(data);
+    xmlhttp.send(data);*/
 
 
     this.emit("change");
